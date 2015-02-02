@@ -34,7 +34,11 @@ TrelloClone.Views.listShow = Backbone.CompositeView.extend({
 
   onRender: function () {
     var list
-    this.$('.cards').sortable();
+    this.$('.cards').sortable({
+      sort: function(event, ui) {
+        $(ui.item).addClass('dragged');
+      }
+    });
     _(this.subviews()).each(function (subviews, selector) {
       subviews.forEach(function (subview) {
         subview.onRender && subview.onRender();

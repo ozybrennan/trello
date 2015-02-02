@@ -50,11 +50,9 @@ TrelloClone.Views.boardShow = Backbone.CompositeView.extend({
   },
 
   sortToDo: function(event, ui) {
-    var that = this;
-
     var $sortedItem = $(ui.item);
 
-    debugger
+    $sortedItem.removeClass('dragged');
 
     if ($sortedItem.attr("class") === "list") {
       var item = this.model.lists().get($sortedItem.attr("id"));

@@ -1,8 +1,6 @@
 TrelloClone.Views.cardShow = Backbone.View.extend({
   template: JST['card/show'],
 
-  tagName: 'li',
-
   attributes: function (){
     return {
       "data-order": this.model.get("ord"),
