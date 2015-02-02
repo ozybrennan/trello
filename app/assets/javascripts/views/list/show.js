@@ -5,6 +5,8 @@ TrelloClone.Views.listShow = Backbone.CompositeView.extend({
     'click .list-delete': 'deleteList'
   },
 
+  className: "list",
+
   initialize: function() {
     this.model.cards().each(this.addCard.bind(this));
 
