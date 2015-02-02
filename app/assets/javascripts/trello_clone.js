@@ -10,7 +10,6 @@ window.TrelloClone = {
 };
 
 Backbone.CompositeView = Backbone.View.extend({
-
   addSubview: function (selector, view) {
     this.subviews(selector).push(view);
     this.attachSubview(selector, view);
@@ -28,6 +27,9 @@ Backbone.CompositeView = Backbone.View.extend({
 
       _(subviews).each(function(subview) {
         view.attachSubview(selector, subview);
+        if (subview.attachSubviews) {
+          subview.attachSubviews();
+        }
       });
     });
   },
@@ -40,10 +42,10 @@ Backbone.CompositeView = Backbone.View.extend({
   },
 
   remove: function() {
-      Backbone.View.prototype.remove.call(this);
-      _(this.subviews()).each(function(subviews){
-        _(subviews).each(function (subview) {subview.remove(); });
-      });
+    Backbone.View.prototype.remove.call(this);
+    _(this.subviews()).each(function(subviews){
+      _(subviews).each(function (subview) {subview.remove(); });
+    });
   },
 
   subviews: function (selector) {
