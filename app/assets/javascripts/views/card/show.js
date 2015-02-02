@@ -3,6 +3,15 @@ TrelloClone.Views.cardShow = Backbone.View.extend({
 
   tagName: 'li',
 
+  attributes: function (){
+    return {
+      "data-order": this.model.get("ord"),
+      "data-list-id": this.model.get("list_id"),
+      "id": this.model.get("id")
+    }
+  },
+
+
   events: {
     "mouseenter" : "addDeleteButton",
     "mouseleave" : "deleteDeleteButton",
@@ -10,7 +19,7 @@ TrelloClone.Views.cardShow = Backbone.View.extend({
   },
 
   render: function() {
-    var content = this.template({ list: this.model });
+    var content = this.template({ card: this.model });
     this.$el.append(content);
     return this;
   },
