@@ -16,5 +16,7 @@ class Card < ActiveRecord::Base
   has_many :items, dependent: :destroy
   has_many :card_assignments, dependent: :destroy
 
+  validates :title, :list, :ord, presence: true
+
   default_scope { order(:ord) }
 end

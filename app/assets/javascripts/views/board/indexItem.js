@@ -4,7 +4,8 @@ TrelloClone.Views.boardIndexItem = Backbone.View.extend({
   tagName: 'li',
 
   events: {
-    'click .show-link': 'redirectToShow'
+    'click .show-link': 'redirectToShow',
+    'click .board-delete' : 'deleteBoard'
   },
 
   render: function() {
@@ -16,6 +17,14 @@ TrelloClone.Views.boardIndexItem = Backbone.View.extend({
   redirectToShow: function() {
     var url = 'boards/' + this.model.id;
     Backbone.history.navigate(url, {trigger: true})
+  },
+
+  deleteBoard: function () {
+    var view = new TrelloClone.Views.boardModal();
+    $(".backdrop").append(view.render().$el);
+    view.center();
+    // event.preventDefault();
+    // this.model.destroy();
   },
 
 });

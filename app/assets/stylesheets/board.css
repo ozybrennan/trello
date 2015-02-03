@@ -1,0 +1,32 @@
+div.overlay {
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+  color: black;
+}
+
+div.my-modal {
+  position: absolute;
+  border-radius: 14px;
+  padding: 8px;
+  background: white;
+  width: auto;
+  height: auto;
+}
+
+div.content {
+  border-radius: 8px;
+  background: #fff;
+  padding: 20px;
+}
+
+div.close {
+  position: absolute;
+  background: black;
+  width: 24px;
+  height: 27px;
+  display: block;
+  text-indent: -9999px;
+  top: -7px;
+  right: -7px;
+}

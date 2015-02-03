@@ -8,6 +8,7 @@ TrelloClone.Views.listNew = Backbone.View.extend({
   },
 
   render: function() {
+    $('.list-errors').empty();
     var content = this.template();
     this.$el.html(content);
     return this;
@@ -24,12 +25,12 @@ TrelloClone.Views.listNew = Backbone.View.extend({
         this.render();
       }.bind(this),
       error: function(model, response) {
-        $('.errors').empty();
+        $('.list-errors').empty();
         response.responseJSON.forEach(function(el){
           var li = $('<li></li>').html(el);
-          $('.errors').append(li);
+          $('.list-errors').append(li);
         })
-        this.render();
+        $("#list-title").effect("highlight");
       }.bind(this),
     })
   },

@@ -3,9 +3,12 @@ TrelloClone.Views.boardIndex = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.collection.each(this.addItem.bind(this));
+
     var boardNew = new TrelloClone.Views.boardNew();
     this.addSubview(".board-new", boardNew.render());
+
     this.listenTo(this.collection, "add", this.addAndRender);
+    this.listenTo(this.collection, "remove", this.removeAndRender);
   },
 
   render: function() {
@@ -23,6 +26,15 @@ TrelloClone.Views.boardIndex = Backbone.CompositeView.extend({
 
   addAndRender: function(item){
     this.addItem(item);
+    this.render();
+  },
+
+  removeAndRender: function(item){
+    var subview = _.find(this.subviews(".index"),
+    function (subview) {
+      return subview.model === item;
+    });
+    this.removeSubview(".index", subview);
     this.render();
   },
 
